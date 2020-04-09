@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- {{object}} -->
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <h5>RENCANA PEMBELAJARAN SEMESTER</h5>
+        </tr>
+        <tr class="bg-info text-dark">
+            <td>Matakuliah - Kode</td>
+            <td>Rumpun MK</td>
+            <td>BOBOT (sks)</td>
+            <td>Semester</td>
+            <td>tanggal Penyusunan</td>
+        </tr>
+        <tr>
+            <td>{{object.kodemk}}</td>
+            <td>{{object.rumpun}}</td>
+            <td>{{mk.sks}} (sks)</td>
+            <td>{{mk.semester}}</td>
+            <td>{{object.tanggalPenyusunan}}</td>
+        </tr>
+        <tr>
+            <td rowspan="4" class="bg-info text-dark">Otorisasi</td>
+            <td colspan="2" class="bg-info text-dark">Dosen Pengembang RPS</td>
+            <td colspan="2" class="bg-info text-dark">Ka Prodi</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2">{{object.dosenPengampu}}</td>
+            <td colspan="2">Rina Firliana, M.Kom.</td>
+        </tr>
+        <tr>
+            <td rowspan="4">Capaian Pembelajaran</td>
+            <td colspan="4">CPL Prodi yang dibebankan pada MK</td>
+        </tr>
+        <tr>
+            <td colspan="4">{{object.capaianPembelajaranProdi}}</td>
+        </tr>
+        <tr>
+            <td colspan="4">CP MK</td>
+        </tr>
+        <tr>
+            <td colspan="4">{{object.capaianPembelajaran}}</td>
+        </tr>
+        <tr>
+            <td>Deskripsi singkat MK</td>
+            <td colspan="4">{{object.deskripsi}}</td>
+        </tr>
+        <tr>
+            <td>Materi Pembelajaran / Pokok Bahasan</td>
+            <td colspan="4">{{object.materiPembelajaran}}</td>
+        </tr>
+        <tr>
+            <td rowspan="4" class="bg-info text-dark">Pustaka</td>
+            <td colspan="4" class="bg-info text-dark">Utama</td>
+        </tr>
+        <tr>
+            <td colspan="4">Ambil dari modelreferensi filter utama</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="bg-info text-dark">Pendukung</td>
+        </tr>
+        <tr>
+            <td colspan="4">Ambil dari modelreferensi filter pendukung</td>
+        </tr>
+        <tr>
+            <td>Media Pembelajaran</td>
+            <td colspan="4">{{object.mediaBelajar}}</td>
+        </tr>
+        <tr>
+            <td>Team Teaching</td>
+            <td colspan="4">{{object.teamTeaching}}</td>
+        </tr>
+        <tr>
+            <td>Matakuliah Syarat</td>
+            <td colspan="4">{{object.prasyarat}}</td>
+        </tr>
+       
+    </table> 
+</div>
+<!-- <h1>{{object.id}}</h1> -->
+
+<br>
+
+<!-- <br> -->
+<div class="card">
+    <div class="card-header">
+        Rincian Per Pertemuan 
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title">Title</h5>
+        <p class="card-text">Content</p> -->
+        
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Pertemuan</td>
+                        <td>Kemampuan</td>
+                        <td>Materi</td>
+                        <td>Bobot Nilai</td>
+                        <td>Edit / Hapus</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dtRps in rincianRps %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{dtRps.pertemuan}}</td>
+                        <td>{{dtRps.kemampuan|truncatewords:4}}</td>
+                        <td>{{dtRps.materiBelajar|truncatewords:4}}</td>
+                        <td>{{dtRps.bobotPenilaian}}</td>
+                        <td>
+                            <a class="btn btn-outline-success" 
+                                href="{% url 'olahDataRPS:detilRPSUpdateView' dtRps.id %}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a class="btn btn-outline-danger" 
+                                href="{% url 'olahDataRPS:deletedetilrps' dtRps.id %}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6"> Belum ada....</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a class="btn btn-primary btn-block" href="{% url 'olahDataRPS:createdetailrps' object.id %}">Tambah Pertemuan</a>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        Referensi Pustaka 
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title">Title</h5>
+        <p class="card-text">Content</p> -->
+        
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Jenis</td>
+                        <td>Judul</td>
+                        <td>Pengarang</td>
+                        <!-- <td>Tahun</td> -->
+                        <td>Edit / Hapus</td>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for ref in daftarReferensi %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{ref.jenis}}</td>
+                            <td>{{ref.judul}}</td>
+                            <td>{{ref.author}}</td>
+                            <td>
+                                <a class="btn btn-outline-success" 
+                                    href="{% url 'olahDataRPS:updatereferensi' ref.id %}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" 
+                                    href="{% url 'olahDataRPS:deletereferensi' ref.id %}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+            <a class="btn btn-primary btn-block" href="{% url 'olahDataRPS:createreferensi' object.id %}">Tambah Pustaka</a>
+        </div>
+    </div>
+</div>
+<a class="btn btn-outline-primary btn-block" href="{% url 'olahDataRPS:index' %}">Kembali ke daftar RPS</a>
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<a class="btn btn-primary" href="{% url 'olahDataMatakuliah:create' %}">Tambah Matakuliah</a>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>SKS</th>
+                <th>SMT</th>
+                <th>Jml.Pertemuan</th>
+                <th>Ubah / Hapus</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+            {% for mk in datamk %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{mk.kode}}</td>
+                <td>{{mk.nama}}</td>
+                <td>{{mk.sks}}</td>
+                <td>{{mk.semester}}</td>
+                <td>{{mk.jmlPertemuan}}</td>
+                <td>
+                    <a class="btn btn-outline-success" 
+                    href="{% url 'olahDataMatakuliah:update' mk.id %}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" 
+                    href="{% url 'olahDataMatakuliah:delete' mk.id %}">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
+    

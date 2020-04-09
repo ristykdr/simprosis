@@ -1,0 +1,28 @@
+/* main css */
+#banner {
+    max-width: 50%;
+}
+nav ul {
+    background-color: rgb(135, 213, 250);
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+nav li {
+    float: left;
+    border-right: 1px solid beige;
+}
+nav a {
+    color: rgb(34, 34, 34);
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    /* background-color: rgb(135, 213, 250); */
+}
+
+nav li:hover{
+    background-color:beige;
+}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <a class="btn btn-outline-primary" href="{% url 'olahDataMahasiswa:import' %}">Import Mahasiswa</a>
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <button class="btn btn-primary" type="submit">Simpan</button>
+    </form>
+{% endblock content %}

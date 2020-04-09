@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2></h2>
+<hr>
+<div>
+    <form action="" method="post">{% csrf_token %}
+        <p>Yakin ingin menghapus Detil RPS "{{ object }}"?</p>
+        <input type="submit" value="Yakin"/>
+    </form>
+</div>
+{% endblock content %}

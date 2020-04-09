@@ -1,0 +1,114 @@
+ {% load static %}
+ <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+          <div class="sidebar-brand-icon">
+            <i><img style="height: 30px;" src="{% static 'img/icon_unp_trans.png' %}" alt=""></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">SISFORM <sup>SMART</sup></div>
+        </a>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+  
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'index' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+        </li>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+  
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          APLIKASI
+        </div>
+  
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Operasional" aria-expanded="true" aria-controls="Operasional">
+            <i class="fas fa-fw fa-cogs"></i>
+            <span>Operasional</span>
+          </a>
+          <div id="Operasional" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Menu Operasional</h6>
+              <a class="collapse-item" href="{% url 'olahDataDosen:index' %}">Olah Data Dosen</a>
+              <a class="collapse-item" href="{% url 'olahDataMahasiswa:index' %}">Olah Data Mahasiswa</a>
+              <a class="collapse-item" href="{% url 'olahDataMatakuliah:index' %}">Olah Data Matakuliah</a>
+              <a class="collapse-item" href="{% url 'olahDataJurnalKuliah:jurnalKuliahList' %}">Olah Data Jurnal Kuliah</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Laporan" aria-expanded="true" aria-controls="Laporan">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Laporan</span>
+          </a>
+          <div id="Laporan" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Menu Laporan</h6>
+              <a class="collapse-item" href="{% url 'rekapRPS:index' %}">Rekap RPS</a>
+              <a class="collapse-item" href="{% url 'rekapKRS:index' %}">Rekap KRS</a>
+              <a class="collapse-item" href="{% url 'rekapPresensi:index' %}">Rekap Presensi</a>
+              <a class="collapse-item" href="{% url 'rekapHasilKuliah:index' %}">Rekap Hasil Kuliah</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Dosen" aria-expanded="true" aria-controls="Dosen">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Dosen</span>
+          </a>
+          <div id="Dosen" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Menu Dosen</h6>
+              <a class="collapse-item" href="{% url 'biodataDosen:index' %}">Biodata Dosen</a>
+              <a class="collapse-item" href="{% url 'olahDataRPS:index' %}">Olah data RPS</a>
+              <a class="collapse-item" href="{% url 'olahDataNilai:index' %}">Olah Data Nilai</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Presensi" aria-expanded="true" aria-controls="Presensi">
+            <i class="fas fa-fw fa-calendar-check"></i>
+            <span>Presensi</span>
+          </a>
+          <div id="Presensi" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Menu Presensi</h6>
+              <a class="collapse-item" href="{% url 'subPokokBahasan:index' %}">Sub-Pokok Bahasan</a>
+              <a class="collapse-item" href="{% url 'presensiKuliah:index' %}">Presensi Kuliah</a>
+              <a class="collapse-item" href="{% url 'rekapPresensi:index' %}">Rekap Presensi</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Mahasiswa" aria-expanded="true" aria-controls="Mahasiswa">
+            <i class="fas fa-fw fa-graduation-cap"></i>
+            <span>Mahasiswa</span>
+          </a>
+          <div id="Mahasiswa" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Menu Mahasiswa</h6>
+              <a class="collapse-item" href="{% url 'biodataMahasiswa:index' %}">Biodata Mahasiswa</a>
+              <a class="collapse-item" href="{% url 'inputKRS:index' %}">Input KRS</a>
+            </div>
+          </div>
+        </li>
+  
+        
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+  
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+  
+      </ul>
+      <!-- End of Sidebar -->

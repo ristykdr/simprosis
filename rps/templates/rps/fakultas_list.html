@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    <ul>
+        {% for fak in object_list %}
+            <li>{{ fak.namaFakultas }} | 
+                <a href="{% url 'rps:fakultas-update' fak.pk %}">edit</a>
+                <a href="{% url 'rps:fakultas-delete' fak.pk %}">delete</a>
+            </li>
+        {% empty %}
+            <li>No profile yet.</li>
+        {% endfor %}
+
+    </ul>
+    <p>
+        <a href="{% url 'rps:fakultas-add' %}">tambah fakultas</a>
+    </p>
+</div>
+
+{% endblock content %}

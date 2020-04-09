@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pertemuan</th>
+                    <th>Materi</th>
+                    <th>Metode</th>
+                    <th>Gunakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for dtRps in object_list %}
+                <tr>
+                    <td>{{dtRps.pertemuan}}</td>
+                    <td>{{dtRps.materiBelajar|truncatewords:3}}</td>
+                    <td>{{dtRps.bentukMetodeBelajar|truncatewords:3}}</td>
+                    <td>
+                        <a class="btn btn-outline-success" 
+                        href="{% url 'subPokokBahasan:createdetiljurnalfromrps' id_jurnal dtRps.id %}">
+                        <i class="fa fa-clone"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4"> Belum ada...</td>
+                    </tr>
+                {% endfor %}
+                    
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

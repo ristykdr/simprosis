@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <form action="{% url 'olahDataJurnalKuliah:importPesertaKuliah' idJurnal %}" method="post" enctype="multipart/form-data" required="required">
+        {% csrf_token %}
+        <input type="file" name="fileImport" >
+        <button type="submit">Upload</button>
+    </form>
+    <h1>{{idJurnal}}</h1>
+    {% if dataSudahAda %}
+        <br>
+        <h5>Data gagal diimpor (sudah ada)</h5>
+        {% for row in dataSudahAda %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;
+            {% endfor %}
+            <br>
+        {% endfor %}
+    {% endif %}
+        
+
+    {% if exel_data %}
+        <br>
+        <h5>Data berhasil diimpor :</h5>
+        {% for row in exel_data %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;
+            {% endfor %}
+            <br>
+        {% endfor %}  
+    {% endif %}
+
+    {% if mhsBelumAda %}
+        <br>
+        <h5>Data Mahasiswa belum ada :</h5>
+        {% for row in mhsBelumAda %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;
+            {% endfor %}
+            <br>
+        {% endfor %}  
+    {% endif %}
+    <br>
+    <a class="btn btn-outline-primary" href="{% url 'olahDataJurnalKuliah:detailjurnal' idJurnal %}">Kembali ke Detil Jurnal</a>
+    
+{% endblock content %}

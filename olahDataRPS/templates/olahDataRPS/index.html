@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<a class="btn btn-primary" href="{% url 'olahDataRPS:createrps' %}">Tambah RPS</a>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Matakuliah</th>
+                <th>Dosen Pengampu</th>
+                <th>Capaian Pembelajaran</th>
+                <th>Prasyarat</th>
+                <th>Ubah / Hapus</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+            {% for rps in semua_rps %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>
+                    <!-- arahkan ke detailView -->
+                    <a href="#">{{rps.kodemk}}</a>    
+                </td>
+                <td>{{rps.dosenPengampu}}</td>
+                <td>{{rps.capaianPembelajaran|truncatewords:5}}</td>
+                <td>{{rps.prasyarat}}</td>
+                <td>
+                    <a class="btn btn-outline-success" 
+                        href="{% url 'olahDataRPS:updaterps' rps.id %}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" 
+                        href="{% url 'olahDataRPS:deleterps' rps.id %}">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+<div class="card">
+    <div class="card-header">
+        Header
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Title</h5>
+        <p class="card-text">Content</p>
+    </div>
+</div>
+{% endblock content %}
+    

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if rps_form.errors %}
+    {% for field in rps_form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in rps_form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {% for formRps in rps_form %}
+        {{formRps.label}}
+        {{formRps}}
+    {% endfor %}
+    <!-- <div class="form-group">
+        {{rps_form.kodemk.label}}
+        {{rps_form.kodemk}}
+    </div> -->
+    
+    <!-- <table>
+        {{rps_form.as_table}}
+    </table> -->
+    <button class="btn btn-primary" type="submit">Simpan</button>
+</form>
+{% endblock content %}

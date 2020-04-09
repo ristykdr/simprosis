@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+{% load qr_code %}
+<div class="table table-responsive">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <td><b>Matakuliah</b> </td>
+                    <td>{{object.mk}}</td>
+                    <td><b>Kelas</b></td>
+                    <td>{{object.kelas}}</td>
+                    <td><b>Jam</b></td>
+                    <td>{{dataKuliah.jamMulai}} - {{dataKuliah.jamSelesai}}</td>
+                    
+                </tr>
+                <tr>
+                    <td><b>Dosen</b></td>
+                    <td>{{object.dosenPengajar}}</td>
+                    <td><b>Materi</b></td>
+                    <td colspan="3">{{dataKuliah.materi|truncatewords:20}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-7">
+        <div class="card border-primary">
+            <div class="card-header">
+                Jumlah Mahasiswa : <b>{{pesertaKuliah|length}}</b>. Hadir : <b>{{jumlahKehadiran}}</b>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th>NPM</th>
+                            <th>Nama</th>
+                            <th>Hadir</th>
+                            <th>Waktu</th>
+                        </thead>
+                        <tbody>
+                            {% for data in pesertaKuliah %}
+                                <tr>
+                                    <td>{{data.npm__npm}}</td>
+                                    <td>{{data.npm__nama}}</td>
+                                    <td>
+                                        
+                                        {% if data.presensi == True %}
+                                            <i class="fa fa-check" style="color:green"></i>
+                                        {% else %}
+                                            <i class="fa fa-ban" style="color:red"></i>
+                                        {% endif %}   
+                                        
+                                    </td>
+                                    <td>{{data.presenceDate}}</td>
+                                </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4">Belum ada</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <a class="btn btn-primary btn-block" href="{% url 'subPokokBahasan:buatPresensi' object.pk id_dtJurnal %}">Tambah Peserta Kuliah</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="card">
+            <div class="card-body">
+                {% qr_from_text id_dtJurnal size="L" border=6 %}
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock content %}

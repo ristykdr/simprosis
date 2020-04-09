@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- {{object}} -->
+<div class="table table-responsive">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <td>Matakuliah</td>
+                    <td>{{object.mk}}</td>
+                    <td>Kelas</td>
+                    <td>{{object.kelas}}</td>
+                    <td>Tahun Ajaran</td>
+                    <td>{{object.tahunAjaran}}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Dosen</td>
+                    <td>{{object.dosenPengajar}}</td>
+                    <td>Semester</td>
+                    <td>{{object.semester}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="table table-responsive">
+    <div class="card">
+        <div class="card-header">
+            Daftar Peserta Kuliah
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <td>#</td>
+                    <th>NPM</th>
+                    <th>Nama</th>
+                </thead>
+                <tbody>
+                    
+                    {% for pesertaKuliah in pstKuliah %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{pesertaKuliah.peserta__npm}}</td>
+                            <td>{{pesertaKuliah.peserta__nama}}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3">Belum ada..!</td>
+                        </tr>
+                        
+                    {% endfor %}
+                        
+                    <!-- GINI JUGA BISA  -->
+                    <!-- {% if pstKuliah %}
+
+                        <tr>
+                            <td>npm</td>
+                            <td>nama</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="2">Belum ada..!</td>
+                        </tr>
+                    {% endif %} -->
+                    
+                </tbody>
+            </table>
+            <a class="btn btn-primary btn-block" href="{% url 'olahDataJurnalKuliah:importPesertaKuliah' object.pk %}">Tambah Peserta Kuliah</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

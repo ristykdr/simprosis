@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <a class="btn btn-primary" href="{% url 'olahDataJurnalKuliah:jurnal-add' %}">Tambah Jurnal</a> -->
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Matakuliah</th>
+                <th>Tahun</th>
+                <th>Smt</th>
+                <th>Dosen</th>
+                <th>Kelas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jurnal in object_list %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                        <a href="{% url 'olahDataNilai:detiljurnalkuliah' jurnal.pk %}">{{jurnal.mk}}</a>
+                        
+                    </td>
+                    <td>{{jurnal.tahunAjaran}}</td>
+                    <td>{{jurnal.semester}}</td>
+                    <td>{{jurnal.dosenPengajar}}</td>
+                    <td>{{jurnal.kelas}}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">Belum ada jurnal</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

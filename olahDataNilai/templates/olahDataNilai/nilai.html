@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post">
+    <p>Nama : <br><b>{{namaMhs}}</b><br></p> 
+    {% csrf_token %}
+    {{form}}
+    <button class="btn btn-primary" type="submit">Simpan</button>
+</form>
+{% endblock content %}

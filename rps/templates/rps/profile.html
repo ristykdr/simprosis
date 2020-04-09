@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% if pesan %}
+<div class="alert alert-danger alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Awas!</strong> {{pesan}}
+</div>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ user_form}}
+    {{ profile_form }}
+    <button class="btn btn-primary" type="submit">Simpan</button>
+</form>
+{% endblock content %}

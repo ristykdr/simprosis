@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<a class="btn btn-primary" href="{% url 'olahDataDosen:create' %}">Tambah Dosen</a>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nama</th>
+                <th>NIDN</th>
+                <th>Jabatan</th>
+                <th>Golongan</th>
+                <th>Ubah / Hapus</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+            {% for dosen in semua_dosen %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{dosen.nik}}</td>
+                <td>{{dosen.nidn}}</td>
+                <td>{{dosen.jabatan}}</td>
+                <td>{{dosen.golongan}}</td>
+                <td>
+                    <a class="btn btn-outline-success" 
+                    href="{% url 'olahDataDosen:update' dosen.nik_id %}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" 
+                    href="{% url 'olahDataDosen:delete' dosen.nik_id %}">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

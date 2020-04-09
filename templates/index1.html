@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.css' %}">
+    <!-- cek keberadaan css_app -->
+    {% if css_app %}
+        <link rel="stylesheet" href="{% static css_app %}">
+    {% endif %}
+    
+    <title>{{judul}}</title>
+</head>
+<body>
+    
+    {% if banner %}
+        <img id="banner" src="{% static banner %} " alt="">
+    {% endif %}
+        
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/">
+            <img style="height: 30px;" src="{% static 'img/icon_unp_trans.png' %}" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                {% for link,name in nav %}
+                    <li class="nav-item"><a class="nav-link" href="{{link}}">{{name}}</a></li>        
+                {% endfor %}
+                <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li>
+            </ul>
+            
+        </div>
+    </nav>
+<!-- 
+    <nav>
+        <ul>
+        {% for link,name in nav %}
+            <li><a href="{{link}}">{{name}}</a></li>        
+        {% endfor %}
+        </ul>
+    </nav>
+    <br> -->
+
+        
+    <div class="container-fluid shadow" style="margin-top: 60px;">
+        <div class="row">
+            <div class="col-sm-2 border">
+                <!-- untuk menampikan submenu -->
+                {% if subnav %} 
+                <!-- <h3>ini adalah subnav</h3> -->
+                <nav class="navbar navbar-expand-md navbar-dark">
+                    <ul class="nav nav-tabs flex-column">
+                        {% for link, name in subnav %}
+                            <li class="nav-item"><a class="nav-link" href="{{link}}">{{name}}</a></li>
+                        {% endfor %} 
+                    </ul>
+                </nav>
+                {% else %}
+                    <h3>tidak ada apa apa</h3>
+                {% endif %}
+            </div>
+            <div class="col-sm-10 border">
+                <h1 class="display-5">{{judul}}</h1> 
+                <h2 class="display-5">{{subjudul}}</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium sit dolor minus fugiat illum a molestiae. Blanditiis rem nam eius. Consequuntur enim nisi quaerat ea perferendis cum excepturi, consequatur deleniti?</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut dolor officia accusantium reiciendis molestiae. Animi voluptatem enim eius voluptate, aperiam qui magnam quaerat sit dolorum, provident quam ipsam deleniti labore!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, doloribus voluptates repudiandae asperiores earum placeat fugiat commodi delectus, repellat obcaecati quia maiores esse aspernatur odio facilis nulla nemo cupiditate sed?</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus fuga doloremque sit, impedit sapiente deleniti vitae exercitationem ullam voluptate dolores facere soluta neque nostrum quos aut ex natus deserunt voluptatum.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero dolorem maiores sit voluptates vitae quae at, dolores laborum quisquam doloremque mollitia, deserunt, quos cum beatae fuga recusandae? Et, porro cupiditate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam tempora repellat dolore officia modi unde dicta. Minus, magni voluptas, fugiat omnis non, quia commodi illo quas dolore debitis necessitatibus nostrum.</p>
+                <h2>nanti ditampilkan halaman login</h2>
+                <h2>login require</h2>
+            </div>
+        </div>
+
+    </div>   
+    
+    <!-- <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="rps/">RPS</a></li>
+    </ul> -->
+    <!-- TEMPLATE TAG -->
+   
+    
+    
+    <script src="{% static 'vendor/jquery/jquery.js' %}" ></script>
+    <script src="{% static 'vendor/popper/popper.js' %}" ></script>
+    <script src="{% static 'vendor/bootstrap/bootstrap.js' %}"></script>
+</body>
+</html>

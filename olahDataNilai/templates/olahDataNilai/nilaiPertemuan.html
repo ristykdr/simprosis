@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+{% load qr_code %}
+<div class="table table-responsive">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <td><b>Matakuliah</b> </td>
+                    <td>{{object.mk}}</td>
+                    <td><b>Kelas</b></td>
+                    <td>{{object.kelas}}</td>
+                    <td><b>Jam</b></td>
+                    <td>{{dataKuliah.jamMulai}} - {{dataKuliah.jamSelesai}}</td>
+                    
+                </tr>
+                <tr>
+                    <td><b>Dosen</b></td>
+                    <td>{{object.dosenPengajar}}</td>
+                    <td><b>Materi</b></td>
+                    <td colspan="3">{{dataKuliah.materi|truncatewords:20}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="card border-primary">
+    <div class="card-header">
+        Jumlah Mahasiswa : <b>{{pesertaKuliah|length}}</b>. Hadir : <b>{{jumlahKehadiran}}</b> 
+        <a class="btn btn-primary float-right" href="{% url 'olahDataNilai:exportNilaiHarian' dataKuliah.id %}">Download xlsx</a> 
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <th>NPM</th>
+                    <th>Nama</th>
+                    <th>Hadir</th>
+                    <th>Waktu</th>
+                    <th>Nilai</th>
+                    <th>Beri Nilai</th>
+                </thead>
+                <tbody>
+                    {% for data in pesertaKuliah %}
+                        <tr>
+                            <td>{{data.npm__npm}}</td>
+                            <td>{{data.npm__nama}}</td>
+                            <td>
+                                
+                                {% if data.presensi == True %}
+                                    <i class="fa fa-check" style="color:green"></i>
+                                {% else %}
+                                    <i class="fa fa-ban" style="color:red"></i>
+                                {% endif %}   
+                                
+                            </td>
+                            <td>{{data.presenceDate}}</td>
+                            <td>{{data.nilai}}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{% url 'olahDataNilai:nilaiUpdateView' object.pk dataKuliah.id data.id %}">Beri Nilai</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Belum ada</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-primary btn-block" href="#">Rekap dan isi menggunakan Excel</a>
+    </div>
+    
+</div>
+<a class="btn btn-outline-primary btn-block" href="{% url 'olahDataNilai:detiljurnalkuliah' object.pk %}">Kembali ke Jurnal Kuliah {{object.mk}}</a>
+
+{% endblock content %}
