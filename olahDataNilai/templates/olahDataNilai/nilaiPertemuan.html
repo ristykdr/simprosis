@@ -11,7 +11,7 @@
                     <td><b>Kelas</b></td>
                     <td>{{object.kelas}}</td>
                     <td><b>Jam</b></td>
-                    <td>{{dataKuliah.jamMulai}} - {{dataKuliah.jamSelesai}}</td>
+                    <td>{{dataKuliah.jamMulai}} - {{dataKuliah.jamSelesai}} <b>Pertemuan : </b>{{dataKuliah.pertemuan}}</td>
                     
                 </tr>
                 <tr>
@@ -69,7 +69,7 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn btn-primary btn-block" href="#">Rekap dan isi menggunakan Excel</a>
+        <a class="btn btn-primary btn-block" href="{% url 'olahDataNilai:importNilaiHarian' object.pk dataKuliah.id %}">Import Perubahan Nilai Harian (xlsx)</a>
     </div>
     
 </div>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <br>
+    <br>
+    <form action="{% url 'olahDataNilai:importNilaiHarian' idJurnal id_dtJurnal %}" method="post" enctype="multipart/form-data" required="required">
+        {% csrf_token %}
+        <input type="file" name="fileImport" >
+        <button type="submit">Upload</button>
+    </form>
+    
+    {% if dataSudahAda %}
+        <br>
+        <h5>Data gagal diimpor (sudah ada)</h5>
+        {% for row in dataSudahAda %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;
+            {% endfor %}
+            <br>
+        {% endfor %}
+    {% endif %}
+        
+
+    {% if exel_data %}
+        <br>
+        <h5>Data berhasil di impor :</h5>
+        {% for row in exel_data %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;
+            {% endfor %}
+            <br>
+        {% endfor %}  
+    {% endif %}
+    <br>
+    <a class="btn btn-outline-primary" href="{% url 'olahDataNilai:nilaiperpertemuan' idJurnal id_dtJurnal %}">Kembali ke daftar Nilai Harian</a>
+    
+{% endblock content %}

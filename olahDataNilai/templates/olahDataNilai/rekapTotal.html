@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- {{object}} -->
+<div class="table table-responsive">
+    <table class="table">
+        <tr>
+            <td colspan="4" align="center"><h5>JURNAL PERKULIAHAN</h5></td>
+        </tr>
+        <tr>
+            <td>Matakuliah</td> 
+            <td>: {{object.mk}}</td>
+            <td>Tahun Ajaran / Semester</td>
+            <td>: {{object.tahunAjaran}} - {{object.semester}}</td>
+            
+        </tr>
+        <tr>
+            <td>Dosen</td>
+            <td>: {{object.dosenPengajar}}</td>
+            <td>Kelas</td>
+            <td>: {{object.kelas}}, Smt : {{matkul.semester}}</td>
+
+        </tr>
+    </table>
+</div>
+<div class="card">
+    <div class="card-header">
+        Rincian Nilai 
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm">
+                <thead>
+                    <tr>
+                        <td class="align-middle text-center" rowspan="2">NPM</td>
+                        <td class="align-middle text-center" rowspan="2">NAMA</td>
+                        <td class="text-center" colspan="{{jmlPertemuan}}">Nilai pada pertemuan :</td>
+                        <td class="align-middle text-center" rowspan="2">Nilai Akhir</td> 
+                    </tr>
+                    <tr>
+                        {% for pertemuan in detilJurnal %}
+                        <td class="text-center">{{pertemuan.pertemuan}}</td>
+                        {% endfor %}
+                </thead>
+                <tbody>
+                    {% for dataBaris in baris %}
+                        <tr>
+                            {% for isiBaris in dataBaris %}
+                                <td>{{isiBaris}}</td>
+                            {% endfor %}
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td class="text-center" colspan="{{jmlPertemuan}}">Mahasiswa peserta Kuliah tidak ada...</td>
+                        </tr>
+                    {% endfor %}
+                 
+                    
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-primary btn-block" href="{% url 'olahDataNilai:exportNilaiAkhir' object.pk %}">Download xlsx</a>
+            
+    </div>
+    <a class="btn btn-outline-primary btn-block" href="{% url 'olahDataNilai:index' %}">Kembali ke daftar jurnal</a>
+</div>
+{% endblock content %}
